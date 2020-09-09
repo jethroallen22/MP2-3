@@ -6,7 +6,7 @@ const mongoose =require("mongoose")
 const {User} = require("./models/user.js")
 
 
-mongoose.connect("mongodb://localhost:27017/putomnl-db", {
+mongoose.connect("mongodb://localhost:27017/helpinghand-db", {
     useNewUrlParser: true
  })
 
