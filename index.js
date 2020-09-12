@@ -4,6 +4,7 @@ const bodyparser = require("body-parser")
 const cookieparser = require("cookie-parser")
 const mongoose =require("mongoose")
 const {User} = require("./models/user.js")
+const bcrypt = require("bcrypt")
 
 
 mongoose.connect("mongodb://localhost:27017/helpinghand-db", {
@@ -11,9 +12,11 @@ mongoose.connect("mongodb://localhost:27017/helpinghand-db", {
  })
 
 const app = express()
+
 const urlencoder = bodyparser.urlencoded({
     extended:false
 })
+
 
 // var user = new User ({
 //     username: "simon",
@@ -77,10 +80,29 @@ app.get("/message", (req, res) =>{
 
 app.get("/profile", (req, res) =>{
 
-    if(req.session.username == "allen"){
-    res.render("profile.hbs")
-    }else if(req.session.username == "food")
-    res.render("bprofileEdit.hbs")
+    User.findOne({username: req.session.username}).then(user => {
+        if (user) {
+            let errors = {};
+            if (user.businessName !== "" ) {
+                res.render("bprofile.hbs", {
+                    businessName: user.businessName
+                })
+                console.log("u have a business")
+            } else {
+                res.render("profile.hbs", {
+                    completeName: user.fullname,
+                    username: user.username,
+                    email: user.email,
+                    contactno: user.contactNum
+                })
+            }
+            
+        } else {
+            console.log("profile not found")
+            res.redirect("/")
+        }
+    })
+
 
 })
 
@@ -91,56 +113,98 @@ app.get("/bprofile", (req, res) =>{
 
 app.post("/register", urlencoder, (req,res)=>{
 
-    let username = req.body.un
-    let password = req.body.pw
+    let username = req.body.username
+    let fullname = req.body.cn
+    let password = req.body.password
     let email = req.body.email
     let contactno = req.body.contactNum
     let businessname = req.body.businessName
 
     console.log(username)
 
-     if(username.trim() == "" || password.trim() ==""){
-         res.render("signin.hbs", {
-             error: "Enter a username and password"
-         })
-      }
-      else{
-        
+    User.findOne({
+        $or: [{
+            username: req.body.username
+        }, {
+            email: req.body.email
+        }]
+    }).then(user => {
+        if (user) {
+            let errors = {};
+            if (user.username == req.body.username) {
+                res.render("register.hbs", {
+                    error: "Username not available"
+                })
+            } else {
+                res.render("register.hbs", {
+                    error: "email not available"
+                })
+            }
+            
+        } else {
+            let hash = bcrypt.hashSync(password, 10);
+            var user = new User ({
+                         username: username,
+                         email: email,
+                         fullname: fullname,
+                         contactNum: contactno,
+                         password:hash,
+                         businessName: businessname
+                       // ,logo: idk
+                 })
+    
+                 user.save().then((doc) =>{
+                          console.log("successfully added: " + doc)
+                             }, (err) => {
+                                 console.log("Error in adding: " + err)
+                             })
+    
+            res.render("home.hbs")
+            req.session.username = req.body.username
+            res.redirect("/")
+        }
+    })
+    .catch(err => {
+        return res.status(500).json({
+            error: err
+        });
+    });
+    
 
-        var user = new User ({
-            username: username,
-            password: password,
-            email: email,
-            contactNum: contactno,
-        })
+})
 
-         user.save().then((doc) =>{
-         console.log("successfully added: " + doc)
-            }, (err) => {
-                console.log("Error in adding: " + err)
+
+ app.post("/login", urlencoder, (req,res)=>{
+
+    req.session.username = req.body.username
+
+      User.findOne({username: req.body.username}, function(err, user){
+          if(err) {
+              console.log(err);
+          }
+          else if(user){
+            if(bcrypt.compareSync(req.body.password, user.password)) {
+                res.redirect("/")
+              
+               } else {
+                
+                res.render("signin.hbs", {
+                    error: "incorrect username or password"
+                })
+               }
+              
+          }
+          else {
+            res.render("signin.hbs", {
+                error: "incorrect username or password"
             })
+              console.log("invalid");
+              
+          }
+      });
 
-        req.session.username = req.body.un
-        res.redirect("/")
-     }
 
-
-})
-
-app.post("/login", urlencoder, (req,res)=>{
-
-    req.session.username = req.body.un
-
-    if(req.body.un == "allen" && req.body.pw == "123"){
-        res.render("home.hbs")
-    }else if(req.body.un == "food" && req.body.pw == "123"){
-        res.render("home.hbs")
-
-    }else{
-        res.render("signin.hbs")
-    }
-
-})
+  })
 
 
 app.post("/addBusiness", urlencoder, (req,res)=>{
@@ -174,6 +238,3 @@ app.get("/signout", (req, res) =>{
     res.redirect("/")
 
 })
-
-
-
