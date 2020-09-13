@@ -67,15 +67,46 @@ app.get("/aboutus", (req, res) =>{
 })
 
 app.get("/home", (req, res) =>{
-    res.render("home.hbs")
+    User.findOne({username: req.session.username}).then(user => {
+        if (user) {
+            let errors = {};
+                res.render("home.hbs", {
+                    username: req.session.username
+                })
+        } else {
+            console.log("profile not found")
+            res.redirect("/")
+        }
+    })
 })
 
+
 app.get("/inbox", (req, res) =>{
-    res.render("inbox.hbs")
+    User.findOne({username: req.session.username}).then(user => {
+        if (user) {
+            let errors = {};
+                res.render("inbox.hbs", {
+                    username: req.session.username
+                })
+        } else {
+            console.log("profile not found")
+            res.redirect("/")
+        }
+    })
 })
 
 app.get("/message", (req, res) =>{
-    res.render("message.hbs")
+    User.findOne({username: req.session.username}).then(user => {
+        if (user) {
+            let errors = {};
+                res.render("message.hbs", {
+                    username: req.session.username
+                })
+        } else {
+            console.log("profile not found")
+            res.redirect("/")
+        }
+    })
 })
 
 app.get("/profile", (req, res) =>{

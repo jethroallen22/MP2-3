@@ -15,20 +15,17 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="border-style: none;border-bottom: 1px solid #dcdcdc ;">
-        <div class="container-fluid"><img src="css/assets/img/Logo.png" style="width: 50px;height: auto;margin: 10px 0px 0px 20px;margin-right: 10px;"><a class="navbar-brand" href="/home">Helping Hand</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><img src="css/assets/img/Logo.png" style="width: 50px;height: auto;margin: 10px 0px 0px 20px;margin-right: 10px;"><a class="navbar-brand" href="/">Helping Hand</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse d-flex flex-grow-1 justify-content-end" id="navcol-1">
                 <ul class="nav navbar-nav d-flex flex-grow-1 justify-content-end mr-auto">
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item dropdown d-xl-flex"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="background-color: #84a9ac;color: rgb(255,255,255);border-radius: 28px;"><i class="fa fa-user-circle-o" style="margin-right: 5px;"></i>Allen</a>
+                    <li class="nav-item"><a class="nav-link" role="presentation" href="/inbox" style="color: #37434d;"><i class="fa fa-inbox"></i>&nbsp;Inbox</a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item dropdown show d-xl-flex"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#" style="background-color: #84a9ac;color: rgb(255,255,255);border-radius: 28px;"><i class="fa fa-user-circle-o" style="margin-right: 5px;"></i>{{username}}</a>
                         <div
-                            class="dropdown-menu dropdown-menu-right" role="menu"><a class="dropdown-item" role="presentation" href="/profile" style="font-size: 15px;"><i class="fa fa-user" style="margin-right: 10px;"></i>Profile</a><a class="dropdown-item" role="presentation" href="/aboutus" style="font-size: 15px;"><i class="fa fa-info-circle" style="margin-right: 10px;"></i>About us</a>
+                            class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" role="presentation" href="/profile" style="font-size: 15px;"><i class="fa fa-user" style="margin-right: 10px;"></i>Profile</a><a class="dropdown-item" role="presentation" href="/aboutus" style="font-size: 15px;"><i class="fa fa-info-circle" style="margin-right: 10px;"></i>About us</a>
                             <a
-                                class="dropdown-item" role="presentation" href="/inbox" style="font-size: 15px;"><i class="fa fa-inbox" style="margin-right: 10px;"></i>Inbox</a><a class="dropdown-item" role="presentation" href="#myModal-1" style="font-size: 15px;" data-toggle="modal"><i class="fa fa-gear" style="margin-right: 10px;"></i>Setup</a>
-                                <a
-                                    class="dropdown-item" role="presentation" href="/signout" style="font-size: 15px;"><i class="fa fa-sign-out" style="margin-right: 10px;"></i>Log out</a>
-        </div>
+                                class="dropdown-item" role="presentation" href="#myModal-2" style="font-size: 15px;" data-toggle="modal"><i class="fa fa-gear" style="margin-right: 10px;"></i>Setup</a><a class="dropdown-item" role="presentation" href="/signout" style="font-size: 15px;"><i class="fa fa-sign-out" style="margin-right: 10px;"></i>Log out</a></div>
         </li>
         </ul>
         </div>
