@@ -5,11 +5,18 @@ const cookieparser = require("cookie-parser")
 const mongoose =require("mongoose")
 const {User} = require("./models/user.js")
 const bcrypt = require("bcrypt")
+const GridFsStorage = require("multer-gridfs-storage");
+const multer = require("multer");
+const crypto = require("crypto");
+const path = require("path");
 
+
+mongoose.Promise = global.Promise
 
 mongoose.connect("mongodb://localhost:27017/helpinghand-db", {
     useNewUrlParser: true
  })
+
 
 const app = express()
 
@@ -18,21 +25,8 @@ const urlencoder = bodyparser.urlencoded({
 })
 
 
-// var user = new User ({
-//     username: "simon",
-//     password: "test"
-// })
-
-
-//asynchronous
-// user.save().then((doc) =>{
-//     console.log("successfully added: " + doc)
-// }, (err) => {
-//     console.log("Error in adding: " + err)
-// })
-
-
 app.use(express.static("public"));
+app.use(require("/controllers"))
 
 app.use(session({
     secret: "very secret",
@@ -43,7 +37,9 @@ app.use(session({
     }
 }))
 
+app.set("view engine", "hbs");
 
+app.use(cookieparser())
 
 app.get("/", (req, res) =>{
     if(req.session.username){
@@ -238,6 +234,7 @@ app.post("/register", urlencoder, (req,res)=>{
   })
 
 
+  
 app.post("/addBusiness", urlencoder, (req,res)=>{
 
     //when user adds a business to their profile

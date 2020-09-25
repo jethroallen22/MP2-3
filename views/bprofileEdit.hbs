@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>business-profile-edit</title>
-    <link rel="stylesheet" href="css/assets-bprofileEdit/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/assets-bprofileEdit/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="css/assets-bprofileEdit/css/Drag-Drop-File-Input-Upload.css">
-    <link rel="stylesheet" href="css/assets-bprofileEdit/css/Navigation-with-Button.css">
-    <link rel="stylesheet" href="css/assets-bprofileEdit/css/Profile-Edit-Form-1.css">
-    <link rel="stylesheet" href="css/assets-bprofileEdit/css/Profile-Edit-Form.css">
-    <link rel="stylesheet" href="css/assets-bprofileEdit/css/styles.css">
+    <link rel="stylesheet" href="/css/assets-bprofileEdit/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/assets-bprofileEdit/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/assets-bprofileEdit/css/Drag-Drop-File-Input-Upload.css">
+    <link rel="stylesheet" href="/css/assets-bprofileEdit/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="/css/assets-bprofileEdit/css/Profile-Edit-Form-1.css">
+    <link rel="stylesheet" href="/css/assets-bprofileEdit/css/Profile-Edit-Form.css">
+    <link rel="stylesheet" href="/css/assets-bprofileEdit/css/styles.css">
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="border-style: none;border-bottom: 1px solid #dcdcdc ;">
-        <div class="container-fluid"><img src="css/assets/img/Logo.png" style="width: 50px;height: auto;margin: 10px 0px 0px 20px;margin-right: 10px;"><a class="navbar-brand" href="/">Helping Hand</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><img src="/css/assets/img/Logo.png" style="width: 50px;height: auto;margin: 10px 0px 0px 20px;margin-right: 10px;"><a class="navbar-brand" href="/">Helping Hand</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse d-flex flex-grow-1 justify-content-end" id="navcol-1">
                 <ul class="nav navbar-nav d-flex flex-grow-1 justify-content-end mr-auto">
@@ -37,12 +37,13 @@
             <div class="col-md-2" style="background-color: #fafafa;"></div>
             <div class="col-md-8" style="background-color: #fafafa;border-right: 1px none #dcdcdc;border-left: 1px none #dcdcdc;">
                 <section style="width: 700px;height: 200px;margin: 20px;padding-top: 10px;background-color: #fafafa;border: 1px none #dbdbdb;">
-                    <div class="text-center" style="width: 700px;height: 80px;"><img src="css/assets/img/Logo.png" style="width: 50px;height: auto;margin: 10px 0px 0px 20px;margin-right: 10px;">
-                        <p style="font-size: 50px;"><strong>Food</strong><br></p>
+                    <div class="text-center" style="width: 700px;height: 80px;"><img src="/user/photo/{{logo}}" style="width: 50px;height: auto;margin: 10px 0px 0px 20px;margin-right: 10px;">
+                        <p style="font-size: 50px;"><strong>{{businessName}}</strong><br></p>
                     </div>
                 </section>
                 <section style="width: 700px;height: auto;margin: 20px;padding-top: 10px;background-color: #ffffff;border: 1px none #dbdbdb ;">
                     <div class="d-flex">
+                        <form action= "/product/addProduct" method="POST" enctype="multipart/form-data">
                         <div><a class="btn btn-primary btn-lg d-xl-flex justify-content-xl-center align-items-xl-center" role="button" data-toggle="modal" href="#myModal" style="width: 114.734px;font-size: 16px;height: 38px;padding: 6px 12px;margin: 5px 5px;background: #84a9ac;">Add Product</a>
                             <div
                                 class="modal fade" role="dialog" tabindex="-1" id="myModal">
@@ -55,33 +56,40 @@
                                                 <div class="col-4 d-xl-flex align-items-xl-center">
                                                     <h6 style="width: 100%;">Product Name:</h6>
                                                 </div>
-                                                <div class="col" style="padding: 0px;margin-right: 15px;"><input type="text" style="width: 100%;"></div>
+                                                <div class="col" style="padding: 0px;margin-right: 15px;"><input type="text" style="width: 100%;" name="productName"></div>
                                             </div>
                                             <div class="row" style="margin-top: 5px;">
                                                 <div class="col-4 d-xl-flex align-items-xl-center">
                                                     <h6 style="width: 100%;">Description:</h6>
                                                 </div>
-                                                <div class="col" style="padding: 0px;margin-right: 15px;"><textarea style="width: 100%;"></textarea></div>
+                                                <div class="col" style="padding: 0px;margin-right: 15px;"><textarea style="width: 100%;" name="description"></textarea></div>
                                             </div>
                                             <div class="row" style="margin-top: 5px;">
                                                 <div class="col-4 d-xl-flex align-items-xl-center">
                                                     <h6 style="width: 100%;">Product Image:</h6>
                                                 </div>
                                                 <div class="col" style="padding-left: 0px;">
-                                                    <div class="custom-file"><input type="file" class="custom-file-input"><label class="custom-file-label">Upload File</label></div>
+                                                    <div class="custom-file"><input type="file" class="custom-file-input" name="addProduct"><label class="custom-file-label">Upload File</label></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button><button class="btn btn-primary" type="button" style="background: #84a9ac;">Save</button></div>
+                                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button><button class="btn btn-primary" type="submit" style="background: #84a9ac;">Save</button></div>
                                     </div>
                                 </div>
                         </div>
                     </div>
+                    </form>
             </div>
             </section>
-            <section style="width: 700px;height: auto;margin: 20px;border: 1px solid #dbdbdb;padding-top: 10px;background-color: #ffffff;">
-                <h1 style="padding: 0px 0px 0px 20px;font-size: 25px;">Burger</h1><img class="img-fluid" style="width: 696px;margin: 0;" src="css/assets/img/food.jpg">
-                <p style="padding: 0px 20px 0px 20px;text-align: justify;">Burger King (BK) is an American multinational chain of hamburger fast food restaurants. Headquartered in the unincorporated area of Miami-Dade County, Florida, the company was founded in 1953 as Insta-Burger King, a Jacksonville, Florida–based restaurant chain.<br></p>
+
+            
+            {{#each images}}
+            
+            <div data-id="{{_id}}">
+            
+            <section style="width: 700px;height: auto;margin: 20px;border: 1px solid #dbdbdb;padding-top: 10px;background-color: #ffffff;" data-id="{{_id}}">
+                <h1 style="padding: 0px 0px 0px 20px;font-size: 25px;">{{name}}</h1><img class="img-fluid" style="width: 696px; margin: 0;" src="/product/photo/{{_id}}">
+                <p style="padding: 0px 20px 0px 20px;text-align: justify;">{{description}}<br></p>
                 <div
                     class="d-flex justify-content-center">
                     <div><a class="btn btn-primary btn-lg d-xl-flex justify-content-xl-center align-items-xl-center" role="button" data-toggle="modal" href="#myModal-1" style="width: 114.734px;font-size: 16px;height: 38px;padding: 6px 12px;margin: 5px 5px;background: #84a9ac;">Edit Product</a>
@@ -113,52 +121,39 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button><button class="btn btn-primary" type="button" style="background: #84a9ac;">Save</button></div>
+                                    <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal"  >Close</button><button class="btn btn-primary" type="button" style="background: #84a9ac;">Save</button></div>
                                 </div>
                             </div>
                     </div>
-        </div><button class="btn btn-primary d-flex" type="button" style="margin: 5px 5px;background-color: #84a9ac;">Delete Product</button></div>
+                    
+        </div><button class="btn btn-primary d-flex" style="margin: 5px 5px;background-color: #84a9ac;" data-id={{_id}} id="delete"> Delete Product </button></div>
     </section>
-    <section style="width: 700px;height: auto;margin: 20px;border: 1px solid #dbdbdb;padding-top: 10px;background-color: #ffffff;">
-        <h1 style="padding: 0px 0px 0px 20px;font-size: 25px;">Burrito</h1><img class="img-fluid" style="width: 696px;margin: 0;" src="css/assets-bprofileEdit/img/burrito.jpg">
-        <p style="padding: 0px 20px 0px 20px;text-align: justify;">Burrito Gringo Mexican Grill is your go-to Mexican Grill in Ottawa, where you can dine a hearty meal with your friends and family. Our menu has a wide range of items that are sure to keep you coming back for more! We provide catering services across Ottawa.<br></p>
-        <div
-            class="d-flex justify-content-center">
-            <div><a class="btn btn-primary btn-lg d-xl-flex justify-content-xl-center align-items-xl-center" role="button" data-toggle="modal" href="#myModal-2" style="width: 114.734px;font-size: 16px;height: 38px;padding: 6px 12px;margin: 5px 5px;background: #84a9ac;">Edit Product</a>
-                <div
-                    class="modal fade" role="dialog" tabindex="-1" id="myModal-2">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header d-xl-flex align-items-xl-center">
-                                <h4 class="d-xl-flex align-items-xl-center">Edit Product</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-4 d-xl-flex align-items-xl-center">
-                                        <h6 style="width: 100%;">Product Name:</h6>
-                                    </div>
-                                    <div class="col" style="padding: 0px;margin-right: 15px;"><input type="text" style="width: 100%;"></div>
-                                </div>
-                                <div class="row" style="margin-top: 5px;">
-                                    <div class="col-4 d-xl-flex align-items-xl-center">
-                                        <h6 style="width: 100%;">Description:</h6>
-                                    </div>
-                                    <div class="col" style="padding: 0px;margin-right: 15px;"><textarea style="width: 100%;"></textarea></div>
-                                </div>
-                                <div class="row" style="margin-top: 5px;">
-                                    <div class="col-4 d-xl-flex align-items-xl-center">
-                                        <h6 style="width: 100%;">Product Image:</h6>
-                                    </div>
-                                    <div class="col" style="padding-left: 0px;">
-                                        <div class="custom-file"><input type="file" class="custom-file-input"><label class="custom-file-label">Upload File</label></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button><button class="btn btn-primary" type="button" style="background: #84a9ac;">Save</button></div>
-                        </div>
-                    </div>
-            </div>
-            </div><button class="btn btn-primary d-flex" type="button" style="margin: 5px 5px;background-color: #84a9ac;">Delete Product</button></div>
-    </section>
+    
+    </div>
+   
+    
+    {{/each}}
+
+<form id="delete_form" action="/product/deleteProd" method="POST" >
+ <input type="hidden" id="delete_id" name="id" >
+</form>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+
+<script>
+    $(document).ready(function(){
+        $("button#delete").click(function(){
+            let id = $(this).attr("data-id")
+            $("input#delete_id").val(id)
+            $("form#delete_form").submit()
+
+        })
+
+    })
+
+    
+</script>
+    
     </div>
     <div class="col-md-2" style="background-color: #fafafa;"></div>
     </div>
@@ -196,9 +191,22 @@
             </div>
         </div>
     </div>
-    <script src="css/assets-bprofileEdit/js/jquery.min.js"></script>
-    <script src="css/assets-bprofileEdit/bootstrap/js/bootstrap.min.js"></script>
-    <script src="css/assets-bprofileEdit/js/Profile-Edit-Form.js"></script>
+
+
+
+    <script src="/css/assets-bprofileEdit/js/jquery.min.js"></script>
+    <script src="/css/assets-bprofileEdit/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/css/assets-bprofileEdit/js/Profile-Edit-Form.js"></script>
+
+
+
+
+
 </body>
+
+
+
+
+
 
 </html>
