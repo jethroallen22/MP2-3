@@ -1,7 +1,6 @@
 {
   "name": "mp2-3",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,9 +25,21 @@
     "mongoose": "^5.10.2",
     "multer": "^1.4.2",
     "multer-gridfs-storage": "^4.2.0",
-    "multistream": "^4.0.0"
+    "multistream": "^4.0.0",
+    "nodemon": "^2.0.4",
+    "session": "^0.1.0"
   },
-    "engines" : {
-      "node" : "10.0.0"
-    }
+  "engines": {
+    "node": "10.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jethroallen22/MP2-3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jethroallen22/MP2-3/issues"
+  },
+  "homepage": "https://github.com/jethroallen22/MP2-3#readme",
+  "description": ""
 }
