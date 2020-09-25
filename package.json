@@ -28,7 +28,7 @@
     "multer-gridfs-storage": "^4.2.0",
     "multistream": "^4.0.0"
   },
-    "engines" : {
-      "node" : "10.0.0"
-    }
+  "engines": {
+    "node": "10.0.0"
+  }
 }
